@@ -1,0 +1,451 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); color: var(--color-text-primary); }
+.form-wrap { max-width: 620px; padding: 1.5rem 0; }
+label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
+input[type=text], input[type=email], input[type=tel], select, textarea {
+  width: 100%; padding: 9px 12px; font-size: 14px;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary); font-family: var(--font-sans);
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: #7F77DD; box-shadow: 0 0 0 2px #EEEDFE55; }
+textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.section { margin-bottom: 1.25rem; }
+.divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+.hero { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border: 0.5px solid var(--color-border-tertiary); }
+.hero-title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+.hero-sub { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.5rem; }
+.cat-card { border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-lg); padding: 12px 14px; cursor: pointer; transition: border-color 0.15s, background 0.15s; background: var(--color-background-primary); }
+.cat-card:hover { border-color: #7F77DD; background: #EEEDFE22; }
+.cat-card.selected { border: 1.5px solid #534AB7; background: #EEEDFE55; }
+.cat-icon { font-size: 18px; margin-bottom: 6px; }
+.cat-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+.cat-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+.dynamic-section { margin-top: 1.25rem; }
+.dynamic-header { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.dynamic-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.25rem; line-height: 1.6; }
+.q-block { margin-bottom: 1.1rem; }
+.hint { font-size: 12px; color: var(--color-text-tertiary); margin-top: 5px; line-height: 1.5; }
+.radio-group { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
+.radio-option { display: flex; align-items: flex-start; gap: 10px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 9px 12px; cursor: pointer; font-size: 13px; line-height: 1.5; color: var(--color-text-primary); }
+.radio-option:hover { border-color: #7F77DD; background: #EEEDFE22; }
+.radio-option input[type=radio] { accent-color: #534AB7; margin-top: 2px; flex-shrink: 0; }
+.photo-area { border: 0.5px dashed var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 20px; text-align: center; cursor: pointer; margin-top: 6px; }
+.photo-area:hover { border-color: #7F77DD; }
+.photo-icon { font-size: 20px; margin-bottom: 6px; }
+.photo-label { font-size: 13px; color: var(--color-text-secondary); }
+.photo-hint { font-size: 12px; color: var(--color-text-tertiary); margin-top: 4px; }
+.submit-wrap { margin-top: 1.75rem; }
+.btn-submit { width: 100%; background: #534AB7; color: #fff; border: none; border-radius: var(--border-radius-md); padding: 12px; font-size: 14px; font-weight: 500; cursor: pointer; letter-spacing: 0.01em; }
+.btn-submit:hover { background: #3C3489; }
+.submit-note { font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-top: 10px; line-height: 1.6; }
+.hidden { display: none; }
+.step-label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 10px; }
+</style>
+
+<div class="form-wrap">
+
+  <div class="hero">
+    <div class="hero-title">Tell us what's going on</div>
+    <div class="hero-sub">Answer a few quick questions and we'll have everything we need to fix your issue — no follow-up calls to gather more details.</div>
+  </div>
+
+  <div class="section">
+    <p class="step-label">Step 1 — Your details</p>
+    <div class="row">
+      <div>
+        <label>Your name</label>
+        <input type="text" placeholder="e.g. Rajesh Kumar" />
+      </div>
+      <div>
+        <label>Your company or site</label>
+        <input type="text" placeholder="e.g. Sartorius, Jay Jay Mills" />
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>Email address</label>
+        <input type="email" placeholder="you@company.com" />
+      </div>
+      <div>
+        <label>Phone number</label>
+        <input type="tel" placeholder="+91 98XXX XXXXX" />
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <p class="step-label">Step 2 — What's the issue?</p>
+    <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:12px;">Pick the option that best describes what you're seeing.</p>
+
+    <div class="category-grid" id="cat-grid">
+      <div class="cat-card" onclick="selectCat(this,'no-data')">
+        <div class="cat-icon">📊</div>
+        <div class="cat-title">Numbers missing from my dashboard</div>
+        <div class="cat-sub">A meter or location is showing no data, or has gone blank</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'wrong-data')">
+        <div class="cat-icon">⚠️</div>
+        <div class="cat-title">The readings look wrong or unusually high</div>
+        <div class="cat-sub">Values seem way off, showing zero, or not matching the meter display</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'fix-data')">
+        <div class="cat-icon">✏️</div>
+        <div class="cat-title">I need to correct or add some data</div>
+        <div class="cat-sub">The portal has wrong numbers and I have the correct values</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'hardware')">
+        <div class="cat-icon">🔧</div>
+        <div class="cat-title">A physical meter or sensor isn't working</div>
+        <div class="cat-sub">The device display is blank, damaged, or behaving strangely on-site</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'change')">
+        <div class="cat-icon">⚙️</div>
+        <div class="cat-title">I need something changed on my dashboard</div>
+        <div class="cat-sub">Rename a point, change alerts, update reports, or adjust the layout</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'reports')">
+        <div class="cat-icon">📧</div>
+        <div class="cat-title">My reports or alert emails aren't arriving</div>
+        <div class="cat-sub">Scheduled emails are missing, incomplete, or showing wrong values</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'portal-bug')">
+        <div class="cat-icon">💻</div>
+        <div class="cat-title">Something on the portal or app isn't working</div>
+        <div class="cat-sub">A button, page, or feature isn't behaving as expected</div>
+      </div>
+      <div class="cat-card" onclick="selectCat(this,'visit')">
+        <div class="cat-icon">📍</div>
+        <div class="cat-title">I need someone to visit my site</div>
+        <div class="cat-sub">Installation, calibration, or a repair that needs to be done on-site</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dynamic-area" class="hidden">
+    <hr class="divider" />
+    <div class="section">
+      <p class="step-label">Step 3 — Help us understand the issue</p>
+      <div class="dynamic-header" id="dyn-header"></div>
+      <div class="dynamic-sub" id="dyn-sub"></div>
+      <div id="dyn-questions"></div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <p class="step-label">Step 4 — Attach a photo or screenshot (optional)</p>
+      <p style="font-size:13px; color:var(--color-text-secondary); margin-bottom:8px;">A picture of the meter display, dashboard, or any error message helps us diagnose faster.</p>
+      <div class="photo-area" onclick="document.getElementById('file-input').click()">
+        <div class="photo-icon">🖼️</div>
+        <div class="photo-label">Tap to upload a photo or screenshot</div>
+        <div class="photo-hint">JPG, PNG or PDF · Max 10 MB</div>
+      </div>
+      <input type="file" id="file-input" accept="image/*,.pdf" style="display:none" />
+    </div>
+
+    <div class="submit-wrap">
+      <button class="btn-submit">Submit my request →</button>
+      <p class="submit-note">We'll review everything you've shared and get back to you — usually within the same business day.<br>No need to send a follow-up message.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let selectedCat = null;
+
+const flows = {
+  "no-data": {
+    header: "Let's find out why your data isn't showing",
+    sub: "These details help us figure out whether it's a connectivity issue, a cloud sync delay, or something with the meter itself.",
+    questions: [
+      {
+        id: "meter-name",
+        label: "Which meter or location is affected?",
+        type: "text",
+        placeholder: "e.g. STP Outlet, Borewell 1, RO Feed meter",
+        hint: "If more than one meter is affected, list all of them."
+      },
+      {
+        id: "since-when",
+        label: "When did it stop showing data? (approximate date and time is fine)",
+        type: "text",
+        placeholder: "e.g. 15 Aug 2025, sometime in the morning"
+      },
+      {
+        id: "device-status",
+        label: "What does the meter look like at the physical location right now?",
+        type: "radio",
+        options: [
+          "The meter display is ON and showing numbers locally",
+          "The meter display is ON but showing zero",
+          "The meter display is completely blank or OFF",
+          "I can't access the meter physically right now",
+          "I'm not sure — I can only see the dashboard"
+        ]
+      }
+    ]
+  },
+  "wrong-data": {
+    header: "Tell us what looks wrong",
+    sub: "Describing the problem clearly helps us trace whether it's the sensor, a calculation issue, or how the data is being processed.",
+    questions: [
+      {
+        id: "meter-name",
+        label: "Which meter or location is showing the wrong values?",
+        type: "text",
+        placeholder: "e.g. Borewell 1, Injection Well, Fire Hydrant meter"
+      },
+      {
+        id: "wrong-dates",
+        label: "Which dates are showing the wrong values?",
+        type: "text",
+        placeholder: "e.g. 4th and 5th August 2025"
+      },
+      {
+        id: "wrong-type",
+        label: "What does the wrong data look like?",
+        type: "radio",
+        options: [
+          "Showing an absurdly large number (crores, lakhs) that makes no sense",
+          "Showing zero even though the meter is running",
+          "The dashboard number doesn't match what the meter display shows",
+          "The water balance total doesn't add up correctly",
+          "Readings seem slightly high or low but not extreme"
+        ]
+      }
+    ]
+  },
+  "fix-data": {
+    header: "Share the correct values with us",
+    sub: "We'll update the portal on your end. Please be as specific as you can about dates and quantities — it helps us make the correction accurately.",
+    questions: [
+      {
+        id: "fix-meter",
+        label: "Which meter or location needs to be corrected?",
+        type: "text",
+        placeholder: "e.g. Raw Water Main Outlet, Rainwater Tank"
+      },
+      {
+        id: "fix-values",
+        label: "What are the correct values, and for which dates?",
+        type: "textarea",
+        placeholder: "e.g.\n15-08-2025 — 706 KL\n20-08-2025 — 806 KL\n21-08-2025 — 820 KL",
+        hint: "Enter one date per line. Include the unit (KL, KWh, mm, etc.)."
+      },
+      {
+        id: "fix-reason",
+        label: "Where do these correct values come from?",
+        type: "radio",
+        options: [
+          "I read them directly from the meter display",
+          "We maintain our own manual logbook",
+          "I entered the wrong value in the portal and want to fix it",
+          "The meter was replaced or serviced and the data went off after that",
+          "Other"
+        ]
+      }
+    ]
+  },
+  "hardware": {
+    header: "Tell us about the device on-site",
+    sub: "This helps us figure out whether it needs a site visit, a replacement, or if it's something we can fix remotely.",
+    questions: [
+      {
+        id: "hw-meter",
+        label: "Which meter or sensor is having the problem?",
+        type: "text",
+        placeholder: "e.g. STP Outlet flow meter, Level sensor near Borewell 2"
+      },
+      {
+        id: "hw-symptom",
+        label: "What are you seeing with the device?",
+        type: "radio",
+        options: [
+          "The screen / display is completely blank or won't turn on",
+          "The display shows numbers, but nothing appears in the portal",
+          "The readings are jumping around or fluctuating randomly",
+          "It keeps showing zero even when water is flowing",
+          "There's visible physical damage (cracked display, water inside, burnt smell)"
+        ]
+      },
+      {
+        id: "hw-power",
+        label: "Have you been able to check the power supply at the meter?",
+        type: "radio",
+        options: [
+          "Yes — power is confirmed ON and stable",
+          "Yes — the power was OFF, I've turned it back on",
+          "There have been power cuts or fluctuations recently at this location",
+          "No — I can't access or check the power supply"
+        ]
+      }
+    ]
+  },
+  "change": {
+    header: "What would you like us to change?",
+    sub: "We can update names, adjust how your water balance is mapped, change alert settings, modify reports, and more. The more specific you are, the faster we can do it.",
+    questions: [
+      {
+        id: "change-type",
+        label: "What kind of change are you looking for?",
+        type: "radio",
+        options: [
+          "Rename a meter or location on the dashboard",
+          "Add or remove a meter from my water balance",
+          "Change who receives my alert emails or reports",
+          "Adjust alert limits (thresholds)",
+          "Change something in the layout or categories",
+          "Something else"
+        ]
+      },
+      {
+        id: "change-detail",
+        label: "Describe exactly what you'd like — current state vs. what you want",
+        type: "textarea",
+        placeholder: "e.g. Currently, 'Borewell 06' appears on the dashboard. I'd like it renamed to 'Piezometer'. \n\nOr: Remove 'RO Inlet' from measured consumption and add 'RO Reject' to the total source."
+      },
+      {
+        id: "change-urgency",
+        label: "Is there a deadline or reason this is urgent? (optional)",
+        type: "text",
+        placeholder: "e.g. Audit visit on 12th July, management review on Friday",
+        hint: "Leave blank if there's no specific deadline."
+      }
+    ]
+  },
+  "reports": {
+    header: "Let's figure out what's happening with your reports",
+    sub: "Report issues can happen for a few different reasons — knowing which emails should be arriving and since when helps us trace it quickly.",
+    questions: [
+      {
+        id: "rep-problem",
+        label: "What's the problem with your reports or alerts?",
+        type: "radio",
+        options: [
+          "The daily or weekly report email hasn't been arriving",
+          "The report arrived but shows NA or is missing some meters",
+          "I'm getting alert emails but they seem incorrect or excessive",
+          "Alert emails have completely stopped",
+          "The PDF report has wrong branding or missing data fields"
+        ]
+      },
+      {
+        id: "rep-since",
+        label: "When did this start? (approximate date is fine)",
+        type: "text",
+        placeholder: "e.g. From 16th December onwards, or 'about a week ago'"
+      },
+      {
+        id: "rep-emails",
+        label: "Which email address(es) should be receiving these reports?",
+        type: "text",
+        placeholder: "e.g. ops@company.com, manager@company.com",
+        hint: "List all the emails that should be getting reports — we'll verify they're set up correctly."
+      }
+    ]
+  },
+  "portal-bug": {
+    header: "Describe what's not working on the portal",
+    sub: "The more specific you can be about where you are on the portal and what you're trying to do, the faster we can reproduce and fix it.",
+    questions: [
+      {
+        id: "bug-where",
+        label: "Which part of the portal has the issue?",
+        type: "text",
+        placeholder: "e.g. Manual reading entry page, Water balance section, Reports tab, Leadership dashboard"
+      },
+      {
+        id: "bug-what",
+        label: "What were you trying to do, and what happened instead?",
+        type: "textarea",
+        placeholder: "e.g. I was trying to enter a reading for a past date, but the calendar only lets me pick today. It should allow me to go back to earlier dates.",
+        hint: "Describe it as if you're explaining to a friend — no technical terms needed."
+      },
+      {
+        id: "bug-freq",
+        label: "How often does this happen?",
+        type: "radio",
+        options: [
+          "Every time I try — it's consistently broken",
+          "Happened a few times but not always",
+          "It happened once — not sure if it'll repeat"
+        ]
+      }
+    ]
+  },
+  "visit": {
+    header: "We'll arrange someone to come to your site",
+    sub: "Sharing your site address and a contact person means we can plan the visit without needing to call you separately.",
+    questions: [
+      {
+        id: "visit-type",
+        label: "What do you need done at the site?",
+        type: "radio",
+        options: [
+          "Install a new meter",
+          "Calibrate or check the accuracy of an existing meter",
+          "Replace a damaged or faulty meter",
+          "Fix wiring or connectivity at the meter",
+          "General check-up — something feels off but I'm not sure what"
+        ]
+      },
+      {
+        id: "visit-location",
+        label: "Site address and name of the person to contact on-site",
+        type: "textarea",
+        placeholder: "e.g. Unit 4, Peenya Industrial Area, Bengaluru 560058\nContact: Ravi Shankar — 98XXX XXXXX"
+      },
+      {
+        id: "visit-deadline",
+        label: "Is there a date you need this done by?",
+        type: "text",
+        placeholder: "e.g. Before 12th July — we have an audit",
+        hint: "Leave blank if timing is flexible."
+      }
+    ]
+  }
+};
+
+function selectCat(el, key) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedCat = key;
+  renderDynamic(key);
+}
+
+function renderQuestion(q) {
+  let inner = '';
+  if (q.type === 'text') {
+    inner = `<input type="text" id="q-${q.id}" placeholder="${q.placeholder || ''}" />`;
+  } else if (q.type === 'textarea') {
+    inner = `<textarea id="q-${q.id}" placeholder="${q.placeholder || ''}"></textarea>`;
+  } else if (q.type === 'radio') {
+    inner = `<div class="radio-group">${q.options.map((o, i) =>
+      `<label class="radio-option"><input type="radio" name="${q.id}" value="${i}" /> ${o}</label>`
+    ).join('')}</div>`;
+  }
+  return `<div class="q-block">
+    <label>${q.label}</label>
+    ${inner}
+    ${q.hint ? `<p class="hint">${q.hint}</p>` : ''}
+  </div>`;
+}
+
+function renderDynamic(key) {
+  const flow = flows[key];
+  document.getElementById('dyn-header').textContent = flow.header;
+  document.getElementById('dyn-sub').textContent = flow.sub;
+  document.getElementById('dyn-questions').innerHTML = flow.questions.map(renderQuestion).join('');
+  document.getElementById('dynamic-area').classList.remove('hidden');
+  document.getElementById('dynamic-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
